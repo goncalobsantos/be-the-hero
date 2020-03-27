@@ -60,7 +60,7 @@ const Profile = () => {
 						<p className="incident-title">Descrição:</p>
 						<p>{incident.description}</p>
 						<p className="incident-title">Valor:</p>
-						<p>{Intl.NumberFormat('pt-pt', { style: 'currency', currency: 'EUR' }).format(incident.value)}</p>
+						<p>{Intl.NumberFormat('pt-PT', { style: 'currency', currency: 'EUR' }).format(incident.value)}</p>
 						<button type="button" onClick={() => handleDeleteIncident(incident.id)}><FiTrash2 size={20} color="#a8a8b3" /></button>
 					</li>
 				))}

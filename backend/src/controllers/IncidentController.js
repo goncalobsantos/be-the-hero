@@ -2,18 +2,21 @@ const connection = require('../database/connection');
 
 module.exports = {
     async index(request, response) {
+        console.log('> Get all incidents received');
         const { page = 1 } = request.query;
         const [count] = await connection('incidents').count()
         const incidents = await connection('incidents')
             .join('ongs', 'ongs.id', '=', 'incidents.ong_id')
             .limit(5)
             .offset((page - 1) * 5)
-            .select(['incidents.*', 'ongs.email', 'ongs.email', 'ongs.whatsapp', 'ongs.city', 'ongs.district']);
+            .select(['incidents.*', 'ongs.name', 'ongs.email', 'ongs.whatsapp', 'ongs.city', 'ongs.district']);
 
         response.header('X-Total-Count', count['count(*)']);
         return response.json(incidents);
     },
     async create(request, response) {
+        console.log('> Create incident received');
+        console.log('> ' + request.body);
         const { title, description, value } = request.body;
         const ong_id = request.headers.authorization;
 
@@ -24,6 +27,7 @@ module.exports = {
         return response.json({ id });
     },
     async delete(request, response) {
+        console.log(`> Delete incident ${request.params.id} received`);
         const { id } = request.params;
         const ong_id = request.headers.authorization;
 
