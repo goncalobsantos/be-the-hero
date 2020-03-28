@@ -8,7 +8,3 @@ export default function App() {
     <Routes />
   );
 }
-
-//REACT NATIVE TA SEMPRE FLEX
-//REACT NATIVE NAO TEM HERANCA DE ESTILOS
-// const styles = StyleSheet.create({});

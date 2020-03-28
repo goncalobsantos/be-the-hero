@@ -1,11 +1,12 @@
 const connection = require('../database/connection');
+const generateUID = require('../utils/generateUID');
 const crypto = require('crypto');
 
 module.exports = {
     async create(request, response) {
         console.log('> Create ONG received');
         const { name, email, whatsapp, city, district } = request.body;
-        const id = crypto.randomBytes(4).toString('HEX');
+        const id = generateUID();
 
         await connection('ongs').insert({
             id,
